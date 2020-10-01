@@ -1,11 +1,27 @@
 package dev.jamile.githubapp
 
+import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.jamile.githubapp.di.networkModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class GithubApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        setupApp(baseContext)
     }
+
+    private fun setupApp(context: Context) {
+        startKoin {
+            androidContext(context)
+            modules(
+                listOf(networkModule)
+            )
+        }
+    }
+
 }
