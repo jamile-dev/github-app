@@ -1,5 +1,4 @@
-package com.example.githubapp.models
-
+import com.example.githubapp.models.Owner
 import com.google.gson.annotations.SerializedName
 
 data class Repository(
@@ -15,5 +14,4 @@ data class Repository(
     val startGazersCount: Int,
     val watchers: Int,
     val language: String,
-
 )
