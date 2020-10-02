@@ -6,6 +6,7 @@
     android:layout_marginLeft="@dimen/margin_middle"
     android:layout_marginRight="@dimen/margin_middle"
     android:padding="@dimen/padding_small"
+    android:id="@+id/container"
     android:layout_height="wrap_content">
 
     <ImageView

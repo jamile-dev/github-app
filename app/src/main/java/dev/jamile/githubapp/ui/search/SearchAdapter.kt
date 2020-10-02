@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import dev.jamile.githubapp.R
+import dev.jamile.githubapp.models.RepoParcelize
 import dev.jamile.githubapp.models.Repository
-import kotlinx.android.synthetic.main.repo_item_layout.view.*
+import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
 import kotlinx.android.synthetic.main.search_repo_list_item.view.*
 
 class SearchAdapter(
@@ -35,7 +38,6 @@ class SearchAdapter(
                 Glide
                     .with(itemView)
                     .load(repo.owner.avatarUrl)
-                    .apply(RequestOptions.circleCropTransform())
                     .placeholder(R.drawable.octocat)
                     .into(authorImage)
                 ownerName.text = repo.owner.login
@@ -43,8 +45,31 @@ class SearchAdapter(
                 repoDescription.text = repo.description
                 stars.text = repo.startGazersCount.toString()
                 langName.text = repo.language
+                setupContainerClick(repo)
             }
         }
-    }
 
+        private fun setupContainerClick(repository: Repository) {
+            itemView.apply {
+                container.setDebouncedClickListener {
+                    val repoParcel = RepoParcelize(
+                        repository.owner.avatarUrl,
+                        repository.owner.login,
+                        repository.name,
+                        repository.description.orEmpty(),
+                        repository.url,
+                        repository.startGazersCount.toString().orEmpty(),
+                        repository.forks,
+                        repository.issues.toString().orEmpty(),
+                        repository.watchers.toString().orEmpty(),
+                        repository.language.orEmpty(),
+                    )
+                    val directions =
+                        SearchFragmentDirections.actionSearchFragmentToRepoDetailFragment(repoParcel)
+                    findNavController().navigate(directions)
+                }
+            }
+        }
+
+    }
 }
