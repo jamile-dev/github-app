@@ -2,9 +2,9 @@ package dev.jamile.githubapp
 
 import android.app.Application
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import dev.jamile.githubapp.di.networkModule
+import dev.jamile.githubapp.di.repositoryModule
+import dev.jamile.githubapp.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -19,7 +19,11 @@ class GithubApp : Application() {
         startKoin {
             androidContext(context)
             modules(
-                listOf(networkModule)
+                listOf(
+                    viewModelModule,
+                    networkModule,
+                    repositoryModule,
+                )
             )
         }
     }
