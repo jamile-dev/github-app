@@ -15,4 +15,5 @@ data class Repository(
     val startGazersCount: Int,
     val watchers: Int,
     val language: String,
+    val url: String,
 )
