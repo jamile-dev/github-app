@@ -23,16 +23,25 @@ class HomeViewModel(
         _reposLiveData
 
     fun getRepositoriesList() {
-        _reposLiveData.postValue(ViewState(status = ResponseStatus.LOADING))
-        viewModelScope.launch(dispatcherProvider.io) {
+        scope.launch(dispatcherProvider.ui) {
+            _reposLiveData.postValue(ViewState(status = ResponseStatus.LOADING))
             when (val response = repository.getRepositories()) {
                 is Result.Success -> {
-                    _reposLiveData.postValue(
-                        ViewState(
-                            response.data,
-                            ResponseStatus.SUCCESS
+                    if (response.data.totalCount == 0) {
+                        _reposLiveData.postValue(
+                            ViewState(
+                                null,
+                                ResponseStatus.EMPTY_LIST
+                            )
                         )
-                    )
+                    } else {
+                        _reposLiveData.postValue(
+                            ViewState(
+                                response.data,
+                                ResponseStatus.SUCCESS
+                            )
+                        )
+                    }
                 }
                 is Result.Failure -> {
                     _reposLiveData.postValue(ViewState(null, ResponseStatus.ERROR, null))
