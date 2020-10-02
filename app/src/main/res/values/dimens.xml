@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="author_image_size">36dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_middle">10dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+</resources>
