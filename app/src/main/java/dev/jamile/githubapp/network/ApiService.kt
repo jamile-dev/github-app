@@ -1,6 +1,6 @@
 package dev.jamile.githubapp.network
 
-import SearchResponse
+import dev.jamile.githubapp.models.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +13,6 @@ interface ApiService {
     ): Response<SearchResponse>
 
     @GET("/search/repositories")
-    suspend fun searchRepositories(): Response<List<SearchResponse>>
+    suspend fun searchRepositories(@Query("q") query: String): Response<SearchResponse>
 
 }
