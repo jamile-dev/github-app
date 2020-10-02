@@ -15,6 +15,7 @@ ext.versions = [
         // Arch Components
         lifecycleVersion    : '2.2.0',
         multidexVersion     : '2.0.1',
+        navVersion          : '2.3.0',
 
         // DI
         koinVersion         : '2.1.6',
