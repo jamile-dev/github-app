@@ -11,9 +11,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jamile.githubapp.R
+import dev.jamile.githubapp.models.RepoParcelize
 import dev.jamile.githubapp.models.ResponseStatus.*
+import dev.jamile.githubapp.ui.search.SearchFragmentDirections
 import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
+import dev.jamile.githubapp.utils.extensions.setVisibility
+import dev.jamile.githubapp.utils.extensions.setVisibilityIfNeeded
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.emptyListMessage
+import kotlinx.android.synthetic.main.fragment_home.progressBar
+import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.repo_item_layout.*
+import kotlinx.android.synthetic.main.search_repo_list_item.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -40,6 +49,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun initObservers() {
         viewModel.reposLiveData.observe(viewLifecycleOwner, { viewState ->
             when (viewState.status) {
@@ -60,26 +70,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun setLoading() {
-//        TODO("Criar extension para visibility")
-        progressBar.visibility = View.VISIBLE
+        progressBar.setVisibility(true)
+        searchRecycler?.setVisibility(false)
     }
 
     private fun setRecyclerViewList(list: List<Repository>) {
-        // TODO("Melhorar isso aqui tbm")
-        progressBar.visibility = View.GONE
+        progressBar.setVisibility(false)
         recyclerList.apply {
+            setVisibility(true)
             layoutManager = LinearLayoutManager(requireContext())
             adapter = HomeListAdapter(requireContext(), list)
         }
     }
 
     private fun setupError(error: Throwable?) {
+        progressBar.setVisibility(false)
+        recyclerList.setVisibility(false)
         Toast.makeText(requireContext(), error?.message ?: "Erro desconhecido", Toast.LENGTH_SHORT)
             .show()
-        progressBar.visibility = View.GONE
     }
 
     private fun setupEmptyList() {
-        emptyListMessage.visibility = View.VISIBLE
+        emptyListMessage.setVisibility(true)
+        progressBar.setVisibility(false)
+        recyclerList.setVisibility(false)
     }
 }

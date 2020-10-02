@@ -10,24 +10,22 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="start"
         android:minHeight="?attr/actionBarSize"
+        android:textAlignment="textStart"
+        android:elevation="@dimen/margin_middle"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_margin="0dp"
-            android:contentDescription="github octocat"
-            android:src="@drawable/octocat" />
-
-        <ImageView
             android:id="@+id/searchIcon"
             android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_height="48dp"
             android:layout_gravity="end"
+            android:layout_marginStart="@dimen/margin_middle"
+            android:layout_marginEnd="@dimen/margin_middle"
             android:clickable="true"
             android:contentDescription="icon search"
             android:src="@drawable/ic_search" />
@@ -49,7 +47,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:background="#FFF"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

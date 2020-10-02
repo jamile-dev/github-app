@@ -4,10 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.jamile.githubapp.R
+import dev.jamile.githubapp.models.RepoParcelize
 import dev.jamile.githubapp.models.Repository
+import dev.jamile.githubapp.ui.search.SearchFragmentDirections
+import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
 import kotlinx.android.synthetic.main.repo_item_layout.view.*
 
 class HomeListAdapter(
@@ -39,6 +43,29 @@ class HomeListAdapter(
                 repoOwner.text = repo.owner.login
                 starsCount.text = repo.startGazersCount.toString()
                 languageName.text = repo.language
+                navigateToRepoDetail(repo)
+            }
+        }
+
+        private fun navigateToRepoDetail(repository: Repository) {
+            itemView.apply {
+                cardContainer.setDebouncedClickListener {
+                    val repoParcel = RepoParcelize(
+                        repository.owner.avatarUrl,
+                        repository.owner.login,
+                        repository.name,
+                        repository.description.orEmpty(),
+                        repository.url,
+                        repository.startGazersCount.toString().orEmpty(),
+                        repository.forks,
+                        repository.issues.toString().orEmpty(),
+                        repository.watchers.toString().orEmpty(),
+                        repository.language.orEmpty(),
+                    )
+                    val directions =
+                        HomeFragmentDirections.actionHomeFragmentToRepoDetailFragment(repoParcel)
+                    findNavController().navigate(directions)
+                }
             }
         }
     }
