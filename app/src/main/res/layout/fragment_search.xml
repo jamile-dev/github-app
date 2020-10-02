@@ -56,8 +56,26 @@
         android:id="@+id/emptyListMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_middle"
         android:visibility="gone"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/empty_list_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_middle"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/error_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
