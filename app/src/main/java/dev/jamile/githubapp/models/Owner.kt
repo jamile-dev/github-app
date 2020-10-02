@@ -1,5 +1,4 @@
-package com.example.githubapp.models
-
+package dev.jamile.githubapp.models
 import com.google.gson.annotations.SerializedName
 
 data class Owner(

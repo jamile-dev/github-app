@@ -1,4 +1,4 @@
-package com.example.githubapp.models
+package dev.jamile.githubapp.models
 
 enum class ResponseStatus {
     SUCCESS,

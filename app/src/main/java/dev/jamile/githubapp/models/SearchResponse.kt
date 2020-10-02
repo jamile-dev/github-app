@@ -1,4 +1,4 @@
-
+package dev.jamile.githubapp.models
 import com.google.gson.annotations.SerializedName
 
 data class SearchResponse(

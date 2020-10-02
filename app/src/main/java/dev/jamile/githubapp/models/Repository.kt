@@ -1,4 +1,5 @@
-import com.example.githubapp.models.Owner
+package dev.jamile.githubapp.models
+
 import com.google.gson.annotations.SerializedName
 
 data class Repository(
