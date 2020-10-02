@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.Repository
 import dev.jamile.githubapp.models.ResponseStatus
+import dev.jamile.githubapp.utils.extensions.hideKeyboard
 import dev.jamile.githubapp.utils.extensions.textChangeAsFlow
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,8 +40,8 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         setupSearchView()
+        setupToolbar()
         initObserver()
     }
 
@@ -49,7 +52,24 @@ class SearchFragment : Fragment() {
             requestFocus()
             requestFocusFromTouch()
             search(textChangeAsFlow())
+            val listener = SearchView.OnCloseListener {
+                findNavController().popBackStack()
+                activity?.hideKeyboard(this)
+                false
+            }
+            setOnCloseListener(listener)
         }
+    }
+
+    private fun setupToolbar() {
+        searchToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                findNavController().popBackStack()
+                activity?.hideKeyboard(this)
+            }
+        }
+
     }
 
     private fun initObserver() {
@@ -100,11 +120,10 @@ class SearchFragment : Fragment() {
         // TODO("Criar texto")
     }
 
-    private fun navigateToRepoDetail() {
-
-    }
 
     private fun search(textAsFlow: Flow<String>) {
         viewModel.searchQuery(textAsFlow)
     }
+
+
 }
