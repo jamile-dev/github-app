@@ -12,12 +12,9 @@ import dev.jamile.githubapp.repository.ReposRepository
 import dev.jamile.githubapp.utils.DispatcherProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import dev.jamile.githubapp.network.Result
+import kotlinx.coroutines.flow.*
 
 @ExperimentalCoroutinesApi
 class SearchViewModel(
@@ -34,6 +31,8 @@ class SearchViewModel(
         viewModelScope.launch(dispatcherProvider.io) {
             text.debounce(DEBOUNCE_VALUE)
                 .distinctUntilChanged()
+                .filterNotNull()
+                .filterNot { it.isBlank() }
                 .collect { text ->
                     searchInstruments(text)
                 }
@@ -44,7 +43,6 @@ class SearchViewModel(
         _searchLiveData.postValue(ViewState(status = ResponseStatus.LOADING))
         when (val response = repository.searchRepositories(repoName)) {
             is Result.Success -> {
-                Log.d("RESP", "${response}" )
                 _searchLiveData.postValue(
                     ViewState(
                         response.data,
@@ -53,7 +51,6 @@ class SearchViewModel(
                 )
             }
             is Result.Failure -> {
-                Log.d("RESP", "${response}" )
                 _searchLiveData.postValue(ViewState(null, ResponseStatus.ERROR, null))
             }
         }
