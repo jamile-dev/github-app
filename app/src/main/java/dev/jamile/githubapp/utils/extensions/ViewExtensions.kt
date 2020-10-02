@@ -32,3 +32,18 @@ fun View.setDebouncedClickListener(action: (() -> Unit)? = null) {
         setOnClickListener(null)
     }
 }
+
+fun View.setVisibilityIfNeeded(visibility: Int) {
+    if (this.visibility != visibility) {
+        this.visibility = visibility
+    }
+}
+
+fun View.setVisibility(visible: Boolean, whenFalse: Int = View.GONE) {
+    val visibilityToSet = if (visible) {
+        View.VISIBLE
+    } else {
+        whenFalse
+    }
+    setVisibilityIfNeeded(visibilityToSet)
+}
