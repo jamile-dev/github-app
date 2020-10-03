@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -13,6 +12,7 @@ import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.Repository
 import dev.jamile.githubapp.models.ResponseStatus
 import dev.jamile.githubapp.utils.extensions.hideKeyboard
+import dev.jamile.githubapp.utils.extensions.setVisibility
 import dev.jamile.githubapp.utils.extensions.textChangeAsFlow
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -82,7 +82,7 @@ class SearchFragment : Fragment() {
                     setRecyclerViewList(viewState.data!!.items)
                 }
                 ResponseStatus.ERROR -> {
-                    setupError(viewState.error)
+                    setupError()
                 }
                 ResponseStatus.EMPTY_LIST -> {
                     setupEmptyList()
@@ -92,38 +92,32 @@ class SearchFragment : Fragment() {
     }
 
     private fun setLoading() {
-//        TODO("Criar extension para visibility")
-        progressBar.visibility = View.VISIBLE
+        progressBar.setVisibility(true)
     }
 
     private fun setRecyclerViewList(list: List<Repository>) {
-        // TODO("Melhorar isso aqui tbm")
-        progressBar.visibility = View.GONE
+        progressBar.setVisibility(false)
+        errorMessage.setVisibility(false)
+        emptyListMessage.setVisibility(false)
         searchRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = SearchAdapter(requireContext(), list)
+            activity?.hideKeyboard(this)
         }
     }
 
-    private fun setupError(error: Throwable?) {
-        Toast.makeText(requireContext(), error?.message ?: "Erro desconhecido", Toast.LENGTH_SHORT)
-            .show()
-        progressBar.visibility = View.GONE
+    private fun setupError() {
+        errorMessage.setVisibility(true)
+        progressBar.setVisibility(false)
     }
 
     private fun setupEmptyList() {
-        emptyListMessage.visibility = View.VISIBLE
+        progressBar.setVisibility(false)
+        emptyListMessage.setVisibility(true)
     }
-
-
-    private fun setupEmptyState() {
-        // TODO("Criar texto")
-    }
-
 
     private fun search(textAsFlow: Flow<String>) {
         viewModel.searchQuery(textAsFlow)
     }
-
 
 }
