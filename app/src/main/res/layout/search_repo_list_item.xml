@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin_middle"
+    android:layout_marginRight="@dimen/margin_middle"
+    android:padding="@dimen/padding_small"
+    android:id="@+id/container"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/authorImage"
+        android:layout_width="@dimen/author_image_size"
+        android:layout_height="@dimen/author_image_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ownerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_margin="@dimen/margin_small"
+        app:layout_constraintBottom_toBottomOf="@id/authorImage"
+        app:layout_constraintStart_toEndOf="@id/authorImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/repositoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/nunito_sans_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/authorImage" />
+
+    <TextView
+        android:id="@+id/repoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repositoryName" />
+
+    <ImageView
+        android:id="@+id/starsCountImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_star"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repoDescription" />
+
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toBottomOf="@id/starsCountImg"
+        app:layout_constraintStart_toEndOf="@id/starsCountImg"
+        app:layout_constraintTop_toBottomOf="@id/repoDescription" />
+
+    <TextView
+        android:id="@+id/langName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toBottomOf="@id/starsCountImg"
+        android:layout_marginLeft="@dimen/margin_small"
+        app:layout_constraintStart_toEndOf="@id/stars"
+        app:layout_constraintTop_toBottomOf="@id/repoDescription" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_middle"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/langName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
