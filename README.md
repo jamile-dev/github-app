@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="TransactionsApp Logo" width="200"></a>
+  <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="GithubApp Logo" width="200">
   <br>
 GithubApp
   <br>
@@ -22,7 +22,7 @@ GithubApp
 ## Demo
 
 <div>
-<img src="" alt="Gif of Githubapp" width="200"/>
+<img src="https://github.com/jamilelima/github-app/blob/main/assets/githubapp.gif?raw=true" alt="Gif of Githubapp" width="200"/>
 <div>
 
 ## Ferramentas
