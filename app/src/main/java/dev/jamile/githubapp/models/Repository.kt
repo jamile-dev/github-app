@@ -2,6 +2,8 @@ package dev.jamile.githubapp.models
 
 import com.google.gson.annotations.SerializedName
 
+
+
 data class Repository(
     val id: Int,
     val name: String,
@@ -15,5 +17,6 @@ data class Repository(
     val startGazersCount: Int,
     val watchers: Int,
     val language: String,
+    @SerializedName("html_url")
     val url: String,
 )

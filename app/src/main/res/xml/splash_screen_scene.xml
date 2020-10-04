@@ -38,7 +38,7 @@
                 motion:framePosition="100"
                 motion:motionTarget="@+id/imageView" />
             <KeyAttribute
-                android:scaleX="50"
+                android:scaleX="30"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/imageView" />
         </KeyFrameSet>
