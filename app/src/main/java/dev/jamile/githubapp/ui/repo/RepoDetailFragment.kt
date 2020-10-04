@@ -1,5 +1,7 @@
 package dev.jamile.githubapp.ui.repo
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.RepoParcelize
+import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
 import kotlinx.android.synthetic.main.fragment_repo_detail.*
 
 
@@ -46,11 +49,22 @@ class RepoDetailFragment : Fragment() {
         repoDetailOwnerName.text = repository.repoOwnerName
         repoDetailName.text = repository.repoName
         repoDetailDesc.text = repository.repoDescription
-        repoDetailUrl.text = repository.repoUrl
+        repoDetailUrl.apply {
+            text = repository.repoUrl
+            setDebouncedClickListener {
+                openRepoSite(repository.repoUrl)
+            }
+        }
         repoDetailForksCount.text = repository.repoForks
         repoDetailIssues.text = repository.repoIssues
         repoDetailStars.text = repository.repoStars
         repoDetailWatchers.text = repository.repoWatchers
+    }
+
+    private fun openRepoSite(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 
 }
