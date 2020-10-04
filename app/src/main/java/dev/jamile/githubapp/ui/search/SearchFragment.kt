@@ -79,7 +79,9 @@ class SearchFragment : Fragment() {
                     setLoading()
                 }
                 ResponseStatus.SUCCESS -> {
-                    setRecyclerViewList(viewState.data!!.items)
+                    if (viewState.data != null) {
+                        setRecyclerViewList(viewState.data.items)
+                    }
                 }
                 ResponseStatus.ERROR -> {
                     setupError()
