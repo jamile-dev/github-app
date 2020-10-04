@@ -12,26 +12,37 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_enter_anim" />
         <action
             android:id="@+id/action_homeFragment_to_repoDetailFragment"
-            app:destination="@id/repoDetailFragment" />
+            app:destination="@id/repoDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="dev.jamile.githubapp.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_repoDetailFragment"
-            app:destination="@id/repoDetailFragment" />
+            app:destination="@id/repoDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/repoDetailFragment"
         android:name="dev.jamile.githubapp.ui.repo.RepoDetailFragment"
         android:label="fragment_repo_detail"
-        tools:layout="@layout/fragment_repo_detail" >
+        tools:layout="@layout/fragment_repo_detail">
         <argument
             android:name="repository"
             app:argType="dev.jamile.githubapp.models.RepoParcelize" />
