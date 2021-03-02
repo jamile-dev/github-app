@@ -13,6 +13,7 @@ import dev.jamile.githubapp.ui.search.SearchViewModel
 import dev.jamile.githubapp.utils.DispatcherProvider
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
@@ -22,6 +23,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 
+@FlowPreview
 @ExperimentalCoroutinesApi
 class SearchTest {
 
