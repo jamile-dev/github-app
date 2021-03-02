@@ -32,7 +32,7 @@ class SearchAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(repo: Repository) {
-            itemView?.apply {
+            itemView.apply {
                 Glide
                     .with(itemView)
                     .load(repo.owner.avatarUrl)
@@ -68,6 +68,5 @@ class SearchAdapter(
                 }
             }
         }
-
     }
 }
