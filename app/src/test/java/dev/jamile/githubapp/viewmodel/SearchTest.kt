@@ -79,7 +79,7 @@ class SearchTest {
     }
 
     @Test
-    fun `WHEN set empty query THEN dont call api`() = runBlockingTest {
+    fun `WHEN set empty query THEN don't call api`() = runBlockingTest {
         val emptyStringFlow = createFlowTest("")
         viewModel.searchQuery(emptyStringFlow)
         verify { repoRepository wasNot Called }
