@@ -8,7 +8,7 @@ apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "dev.jamile.githubapp"
@@ -63,7 +63,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$versions.navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$versions.navVersion"
 
-
     // Koin
     implementation "org.koin:koin-androidx-scope:$versions.koinVersion"
     implementation "org.koin:koin-androidx-viewmodel:$versions.koinVersion"
@@ -87,9 +86,12 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
 
     // Test
-    testImplementation "junit:junit:$versions.junit"
-    testImplementation "androidx.arch.core:core-testing:$versions.test_core"
-    testImplementation "io.mockk:mockk:$versions.mockk"
-
-
+    testImplementation("junit:junit:$versions.junitVersion")
+    testImplementation "androidx.arch.core:core-testing:$versions.testCoreVersion"
+    testImplementation "io.mockk:mockk:$versions.mockkVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$versions.espressoVersion"
+    androidTestImplementation "androidx.navigation:navigation-testing:$versions.navVersion"
+    androidTestImplementation "androidx.test.ext:junit:$versions.junitExtVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$versions.fragmentTestVersion"
 }

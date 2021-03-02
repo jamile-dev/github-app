@@ -34,8 +34,11 @@ ext.versions = [
         timberVersion       : '4.7.1',
 
         // Test
-        junit               : '4.12',
-        test_core           : '2.1.0',
-        mockk               : '1.10.0'
+        junitVersion        : '4.13',
+        testCoreVersion     : '2.1.0',
+        mockkVersion        : '1.10.0',
+        espressoVersion     : '3.1.0',
+        junitExtVersion     : '1.1.2',
+        fragmentTestVersion : '1.2.5'
 
 ]
