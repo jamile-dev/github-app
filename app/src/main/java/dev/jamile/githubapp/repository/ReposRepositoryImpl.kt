@@ -7,7 +7,7 @@ import dev.jamile.githubapp.network.Result
 
 class ReposRepositoryImpl(private val apiService: ApiService) : ReposRepository {
     override suspend fun getRepositories(): Result<SearchResponse> {
-        val response = apiService.fetchRepos()
+        val response = apiService.fetchPopularRepos()
         if (response.isSuccessful && response.body()?.incompleteResults == false) {
             return Result.Success(response.body()!!)
         }

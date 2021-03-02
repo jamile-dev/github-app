@@ -8,8 +8,8 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("/search/repositories?sort=stars")
-    suspend fun fetchRepos(
-        @Query("q") query: String = "language:kotlin",
+    suspend fun fetchPopularRepos(
+        @Query("q") query: String = "stars",
     ): Response<SearchResponse>
 
     @GET("/search/repositories")
