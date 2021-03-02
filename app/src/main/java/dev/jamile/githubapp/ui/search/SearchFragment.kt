@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.Repository
-import dev.jamile.githubapp.models.ResponseStatus
+import dev.jamile.githubapp.models.ResponseStatus.*
 import dev.jamile.githubapp.utils.extensions.hideKeyboard
 import dev.jamile.githubapp.utils.extensions.setVisibility
 import dev.jamile.githubapp.utils.extensions.textChangeAsFlow
@@ -48,7 +48,7 @@ class SearchFragment : Fragment() {
     private fun setupSearchView() {
         searchView.apply {
             isIconified = false
-            queryHint = "Buscar repositórios"
+            queryHint = SEARCH_REPOS
             requestFocus()
             requestFocusFromTouch()
             search(textChangeAsFlow())
@@ -75,18 +75,18 @@ class SearchFragment : Fragment() {
     private fun initObserver() {
         viewModel.searchLiveData.observe(viewLifecycleOwner, { viewState ->
             when (viewState.status) {
-                ResponseStatus.LOADING -> {
+                LOADING -> {
                     setLoading()
                 }
-                ResponseStatus.SUCCESS -> {
+                SUCCESS -> {
                     if (viewState.data != null) {
                         setRecyclerViewList(viewState.data.items)
                     }
                 }
-                ResponseStatus.ERROR -> {
+                ERROR -> {
                     setupError()
                 }
-                ResponseStatus.EMPTY_LIST -> {
+                EMPTY_LIST -> {
                     setupEmptyList()
                 }
             }
@@ -120,6 +120,10 @@ class SearchFragment : Fragment() {
 
     private fun search(textAsFlow: Flow<String>) {
         viewModel.searchQuery(textAsFlow)
+    }
+
+    companion object {
+        const val SEARCH_REPOS = "Buscar repositórios"
     }
 
 }
