@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
 
 object RequestInterceptor {
 
-    fun logger(): HttpLoggingInterceptor {
+    private fun logger(): HttpLoggingInterceptor {
         val logger = HttpLoggingInterceptor()
         logger.level = BASIC
         return logger
