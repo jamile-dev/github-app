@@ -42,7 +42,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupSearchView()
         setupToolbar()
-        initObserver()
+        initObservers()
     }
 
     private fun setupSearchView() {
@@ -72,7 +72,7 @@ class SearchFragment : Fragment() {
 
     }
 
-    private fun initObserver() {
+    private fun initObservers() {
         viewModel.searchLiveData.observe(viewLifecycleOwner, { viewState ->
             when (viewState.status) {
                 LOADING -> {

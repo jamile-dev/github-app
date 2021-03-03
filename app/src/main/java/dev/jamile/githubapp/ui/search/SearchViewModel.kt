@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dev.jamile.githubapp.base.BaseViewModel
 import dev.jamile.githubapp.base.ViewState
 import dev.jamile.githubapp.models.ResponseStatus
+import dev.jamile.githubapp.models.ResponseStatus.*
 import dev.jamile.githubapp.models.SearchResponse
 import dev.jamile.githubapp.network.Result
 import dev.jamile.githubapp.repository.ReposRepository
@@ -40,27 +41,27 @@ class SearchViewModel(
 
     private fun searchInstruments(repoName: String) {
         scope.launch(dispatcherProvider.io) {
-            _searchLiveData.postValue(ViewState(status = ResponseStatus.LOADING))
+            _searchLiveData.postValue(ViewState(status = LOADING))
             when (val response = repository.searchRepositories(repoName)) {
                 is Result.Success -> {
                     if (response.data.totalCount == 0) {
                         _searchLiveData.postValue(
                             ViewState(
                                 null,
-                                ResponseStatus.EMPTY_LIST
+                                EMPTY_LIST
                             )
                         )
                     } else {
                         _searchLiveData.postValue(
                             ViewState(
                                 response.data,
-                                ResponseStatus.SUCCESS
+                                SUCCESS
                             )
                         )
                     }
                 }
                 is Result.Failure -> {
-                    _searchLiveData.postValue(ViewState(null, ResponseStatus.ERROR, null))
+                    _searchLiveData.postValue(ViewState(null, ERROR, response.throwable))
                 }
             }
         }

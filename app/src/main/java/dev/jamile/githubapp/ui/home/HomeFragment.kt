@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +13,6 @@ import dev.jamile.githubapp.models.ResponseStatus.*
 import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
 import dev.jamile.githubapp.utils.extensions.setVisibility
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.emptyListMessage
-import kotlinx.android.synthetic.main.fragment_home.progressBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -36,12 +33,6 @@ class HomeFragment : Fragment() {
         navigateToSearch()
     }
 
-    private fun navigateToSearch() {
-        searchIcon.setDebouncedClickListener {
-            findNavController(this).navigate(R.id.action_homeFragment_to_searchFragment)
-        }
-    }
-
     private fun initObservers() {
         viewModel.reposLiveData.observe(viewLifecycleOwner, { viewState ->
             when (viewState.status) {
@@ -49,7 +40,9 @@ class HomeFragment : Fragment() {
                     setLoading()
                 }
                 SUCCESS -> {
-                    setRecyclerViewList(viewState.data!!.items)
+                    viewState.data?.let { repos ->
+                        setRecyclerViewList(repos.items)
+                    }
                 }
                 ERROR -> {
                     setupError()
@@ -59,6 +52,12 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun navigateToSearch() {
+        searchIcon.setDebouncedClickListener {
+            findNavController(this).navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun setLoading() {

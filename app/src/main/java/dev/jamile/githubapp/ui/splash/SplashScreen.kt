@@ -27,15 +27,23 @@ class SplashScreen : AppCompatActivity() {
                 if (returnHaveConnection()) {
                     clearBackStackAndStartActivity<MainActivity>()
                 } else {
-                    Toast.makeText(applicationContext, "Ops! Verifique sua conexão e tente novamente", Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        applicationContext,
+                        FAILED_CONNECTION_MSG,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
 
-            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) { }
+            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {}
 
-            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) { }
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
 
-            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) { }
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
         })
+    }
+
+    companion object {
+        const val FAILED_CONNECTION_MSG = "Ops! Verifique sua conexão e tente novamente"
     }
 }
