@@ -5,6 +5,7 @@ import android.content.Context
 import dev.jamile.githubapp.di.networkModule
 import dev.jamile.githubapp.di.repositoryModule
 import dev.jamile.githubapp.di.viewModelModule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
