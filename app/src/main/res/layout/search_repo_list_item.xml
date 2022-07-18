@@ -7,15 +7,17 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_middle"
     android:layout_marginRight="@dimen/margin_middle"
-    android:clickable="true"
-    android:foreground="?android:selectableItemBackground"
     android:layout_marginBottom="@dimen/margin_middle"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
     android:padding="@dimen/padding_small">
 
     <ImageView
         android:id="@+id/authorImage"
         android:layout_width="@dimen/author_image_size"
         android:layout_height="@dimen/author_image_size"
+        android:contentDescription="@string/author_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:contentDescription="@string/starts_image"
         android:fontFamily="@font/nunito_sans"
         android:src="@drawable/ic_star"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +64,7 @@
         android:id="@+id/stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:fontFamily="@font/nunito_sans"
         app:layout_constraintBottom_toBottomOf="@id/starsCountImg"
@@ -72,7 +75,7 @@
         android:id="@+id/langName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:fontFamily="@font/nunito_sans"
         app:layout_constraintBottom_toBottomOf="@id/starsCountImg"

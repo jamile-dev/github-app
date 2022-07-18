@@ -29,7 +29,7 @@ class SplashScreen : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         applicationContext,
-                        FAILED_CONNECTION_MSG,
+                        getString(R.string.verify_connection),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -41,9 +41,5 @@ class SplashScreen : AppCompatActivity() {
 
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
         })
-    }
-
-    companion object {
-        const val FAILED_CONNECTION_MSG = "Ops! Verifique sua conexão e tente novamente"
     }
 }

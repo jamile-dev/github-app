@@ -4,4 +4,8 @@
     <string name="error_message">Ops! Não foi possível encontrar repositórios</string>
     <string name="issues">Issues</string>
     <string name="watchers">Watchers</string>
+    <string name="search_repos">Buscar repositórios</string>
+    <string name="verify_connection">Ops! Verifique sua conexão e tente novamente</string>
+    <string name="starts_image">starts image</string>
+    <string name="author_image">author image</string>
 </resources>
