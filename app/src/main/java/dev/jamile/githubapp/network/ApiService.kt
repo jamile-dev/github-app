@@ -9,7 +9,7 @@ interface ApiService {
 
     @GET("/search/repositories?sort=stars")
     suspend fun fetchPopularRepos(
-        @Query("q") query: String = "stars",
+        @Query("q") query: String = "kotlin",
     ): Response<SearchResponse>
 
     @GET("/search/repositories")

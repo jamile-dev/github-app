@@ -26,26 +26,28 @@ class HomeViewModel(
         scope.launch(dispatcherProvider.ui) {
             _reposLiveData.postValue(ViewState(status = LOADING))
             when (val response = repository.getRepositories()) {
-                is Result.Success -> {
-                    if (response.data.totalCount == 0) {
-                        _reposLiveData.postValue(
-                            ViewState(
-                                null,
-                                EMPTY_LIST
-                            )
+                is Result.Success -> if (response.data.totalCount == 0) {
+                    _reposLiveData.postValue(
+                        ViewState(
+                            null,
+                            EMPTY_LIST
                         )
-                    } else {
-                        _reposLiveData.postValue(
-                            ViewState(
-                                response.data,
-                                SUCCESS
-                            )
+                    )
+                } else {
+                    _reposLiveData.postValue(
+                        ViewState(
+                            response.data,
+                            SUCCESS
                         )
-                    }
+                    )
                 }
-                is Result.Failure -> {
-                    _reposLiveData.postValue(ViewState(null, ERROR, response.throwable))
-                }
+                is Result.Failure -> _reposLiveData.postValue(
+                    ViewState(
+                        null,
+                        ERROR,
+                        response.throwable
+                    )
+                )
             }
         }
     }
