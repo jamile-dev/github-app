@@ -15,15 +15,14 @@ GithubApp
   <a href="#features">Features</a> -
   <a href="#como-usar">Como usar</a> -
   <a href="#feedback">Feedback</a> -
-  <a href="#autora">Autora</a> -
   <a href="#licença">Licença</a>
 </p>
 
 ## Demo
 
 <div>
-<img src="https://github.com/jamilelima/github-app/blob/main/assets/githubapp.gif?raw=true" alt="Gif of Githubapp" width="200"/>
-<div>
+<img src="https://github.com/jamilebastos/github-app/blob/main/assets/githubapp.gif?raw=true" alt="Gif of Githubapp" width="200"/>
+</div>
 
 ## Ferramentas
 
@@ -68,7 +67,7 @@ Aqui algumas coisas que você já pode encontrar nesse app:
 ## Como usar
 
 * Faça o clone do repositório
-  * `$ git clone git@github.com:jamilelima/github-app.git`
+  * `$ git clone git@github.com:jamilebastos/github-app.git`
 * Abra o app no android studio e faça as sincronizações necessárias
 * Faça o build do app
 * O app vai ser instalado no seu dispositivo ou no emulador
@@ -77,12 +76,8 @@ Aqui algumas coisas que você já pode encontrar nesse app:
 
 ## Feedback
 
-Sinta-se a vontade para abrir uma [issue](https://github.com/jamilelima/github-app/issues/new) com dúvidas e/ou sugestões!
+Sinta-se a vontade para abrir uma [issue](https://github.com/jamilebastos/github-app/issues/new) com dúvidas e/ou sugestões!
 
-
-## Autora
-
-[Jamile Lima](https://jamile.dev)
 
 ---
 
@@ -90,4 +85,4 @@ Sinta-se a vontade para abrir uma [issue](https://github.com/jamilelima/github-a
 
 MIT License
 
-Copyright (c) 2020 Jamile Lima
+Copyright (c) 2020 Jamile Bastos
