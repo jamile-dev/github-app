@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.Repository
 import dev.jamile.githubapp.models.ResponseStatus.*
+import dev.jamile.githubapp.ui.MainAdapter
+import dev.jamile.githubapp.utils.Directions
 import dev.jamile.githubapp.utils.extensions.hideKeyboard
 import dev.jamile.githubapp.utils.extensions.setVisibility
 import dev.jamile.githubapp.utils.extensions.textChangeAsFlow
@@ -48,7 +50,7 @@ class SearchFragment : Fragment() {
     private fun setupSearchView() {
         searchView.apply {
             isIconified = false
-            queryHint = SEARCH_REPOS
+            queryHint = getString(R.string.search_repos)
             requestFocus()
             requestFocusFromTouch()
             search(textChangeAsFlow())
@@ -73,7 +75,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.searchLiveData.observe(viewLifecycleOwner, { viewState ->
+        viewModel.searchLiveData.observe(viewLifecycleOwner) { viewState ->
             when (viewState.status) {
                 LOADING -> {
                     setLoading()
@@ -90,7 +92,7 @@ class SearchFragment : Fragment() {
                     setupEmptyList()
                 }
             }
-        })
+        }
     }
 
     private fun setLoading() {
@@ -103,7 +105,12 @@ class SearchFragment : Fragment() {
         emptyListMessage.setVisibility(false)
         searchRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SearchAdapter(requireContext(), list)
+            adapter = MainAdapter(
+                requireContext(),
+                list,
+                R.layout.search_repo_list_item,
+                Directions.SEARCH
+            )
             activity?.hideKeyboard(this)
         }
     }
@@ -121,9 +128,4 @@ class SearchFragment : Fragment() {
     private fun search(textAsFlow: Flow<String>) {
         viewModel.searchQuery(textAsFlow)
     }
-
-    companion object {
-        const val SEARCH_REPOS = "Buscar repositórios"
-    }
-
 }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jamile.githubapp.R
 import dev.jamile.githubapp.models.Repository
 import dev.jamile.githubapp.models.ResponseStatus.*
+import dev.jamile.githubapp.ui.MainAdapter
+import dev.jamile.githubapp.utils.Directions
 import dev.jamile.githubapp.utils.extensions.setDebouncedClickListener
 import dev.jamile.githubapp.utils.extensions.setVisibility
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -34,7 +36,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.reposLiveData.observe(viewLifecycleOwner, { viewState ->
+        viewModel.reposLiveData.observe(viewLifecycleOwner) { viewState ->
             when (viewState.status) {
                 LOADING -> {
                     setLoading()
@@ -51,7 +53,7 @@ class HomeFragment : Fragment() {
                     setupEmptyList()
                 }
             }
-        })
+        }
     }
 
     private fun navigateToSearch() {
@@ -69,7 +71,8 @@ class HomeFragment : Fragment() {
         recyclerList?.apply {
             setVisibility(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = HomeListAdapter(requireContext(), list)
+            adapter =
+                MainAdapter(requireContext(), list, R.layout.repo_item_layout, Directions.DETAIL)
         }
     }
 
