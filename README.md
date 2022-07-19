@@ -85,4 +85,4 @@ Sinta-se a vontade para abrir uma [issue](https://github.com/jamilebastos/github
 
 MIT License
 
-Copyright (c) 2020 Jamile Bastos
+Copyright (c) 2022 Jamile Bastos
