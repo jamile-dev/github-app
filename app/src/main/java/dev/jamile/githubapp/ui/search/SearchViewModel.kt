@@ -70,5 +70,4 @@ class SearchViewModel(
     companion object {
         const val DEBOUNCE_VALUE = 500L
     }
-
 }

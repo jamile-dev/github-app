@@ -66,5 +66,4 @@ class RepoDetailFragment : Fragment() {
         intent.data = Uri.parse(url)
         startActivity(intent)
     }
-
 }

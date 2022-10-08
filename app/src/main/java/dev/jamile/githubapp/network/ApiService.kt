@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-
     @GET("/search/repositories?sort=stars")
     suspend fun fetchPopularRepos(
         @Query("q") query: String = "kotlin",
@@ -14,5 +13,4 @@ interface ApiService {
 
     @GET("/search/repositories")
     suspend fun searchRepositories(@Query("q") query: String): Response<SearchResponse>
-
 }
